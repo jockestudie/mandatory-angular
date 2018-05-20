@@ -1,0 +1,41 @@
+<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/cyborg/bootstrap.min.css" rel="stylesheet" integrity="sha384-iMvB1cubutqnCw/Xlf3A1lEXHojPMC7dETFR9CYfYENKn8yw6QlyL+BaYmPXEjmo" crossorigin="anonymous">
+
+<form [formGroup]="myForm" (ngSubmit)="save()"
+style="margin-bottom: 10px"
+>
+
+
+<input name="title"
+    ngModel required
+    class="input"
+    type="text"
+    placeholder="title"
+    formControlName="title"
+  />
+
+<div *ngIf="myForm.controls['title'].invalid && (myForm.controls['title'].dirty ||
+ myForm.controls['title'].touched || myForm.controls['description'].dirty || myForm.controls['description'].touched)" class="error">
+  <div *ngIf="myForm.controls['title'].errors.required">
+          Title required.
+      </div>
+      <div *ngIf="myForm.controls['title'].errors.minlength">
+          Title must be at least 3 characters.
+      </div>
+  </div>
+
+
+
+
+<input name="description"
+ngModel required
+class="input"
+type="text"
+placeholder="description"
+formControlName="description"
+/>
+
+
+<button type="submit" [disabled]="!myForm.valid">
+    Save
+</button>
+</form>
